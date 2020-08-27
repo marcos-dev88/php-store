@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require_once "connection.php";
+    require_once('connection.php');
 
     $error_login = "";
     if(isset($_POST["btnLogin"])){
