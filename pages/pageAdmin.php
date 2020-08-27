@@ -29,7 +29,7 @@
                 ?>
                 !
             </a>
-            <button class='btn-register' style='margin-left: 78.8%;' onclick='listStore()'>Lojas Registradas</button>
+            <button class='btn-register' style='margin-left: 78.8%;' onclick='goStoreList()'>Lojas Registradas</button>
             <button class='btn-register' style="margin-left: 92%; width: 72px;" onclick='backHome()'>Sair</button>
         </nav>
     </body>

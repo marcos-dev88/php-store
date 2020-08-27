@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
 ?>
 
 
@@ -13,7 +13,7 @@
         <link rel='stylesheet' href='../css/style.css'/>
         <script src='../scripts/js/store.js' defer></script>
     </head>
-    <body>
+    <body onload='showStores()'>
         <nav class="navbar navbar-dark" style="background-color: #a3543d;">
             <a style="color: white; font-size: 17px; font-style:italic;">Bem vindo 
                 <?php
@@ -21,10 +21,29 @@
                 ?>
                 !
             </a>
-            <button class='btn-register' style='margin-left: 78.8%;' onclick='listStore()'>Lojas Registradas</button>
             <button class='btn-register' style="margin-left: 92%; width: 72px;" onclick='backHome()'>Sair</button>
         </nav>
+        <div id="allStores" class='col-md-12'>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome Loja:</th>
+                        <th>Razão Social:</th>
+                        <th>CNPJ:</th>
+                        <th>Cidade:</th>
+                        <th>Estado:</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id='getStoreList'>
+                <div style='display: none;'>
+                    <?php
+                        include '../scripts/php/getStores.php';
+                    ?>
+                    </div>
+                </tbody>
+            </table>
+        </div>
 
     </body>
-
 </html>
