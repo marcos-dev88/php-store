@@ -36,10 +36,10 @@
                     </tr>
                 </thead>
                 <tbody id='getStoreList'>
-                <div style='display: none;'>
-                    <?php
-                        include '../scripts/php/getStores.php';
-                    ?>
+                    <div style='display: none;'>
+                        <?php
+                            include '../scripts/php/getStores.php';
+                        ?>
                     </div>
                 </tbody>
             </table>
