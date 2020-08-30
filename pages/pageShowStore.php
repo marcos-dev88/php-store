@@ -22,53 +22,84 @@
         <script src='../scripts/js/store.js' defer></script>
     </head>
     <body onload='showStores()'>
+
 <!--=========================== REGISTER MODAL ==================================-->
-        <div class="modal fade" id="rStoreModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="rStoreMLabel"> Registrar nova loja </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class='form-group'>
-                        <input type='hidden' id='idStoreInput'/>
-                        <label style='margin-top:15px' >Nome Loja:</label>
-                        <input class='form-control' type='text' id='nameStoreInput'/>
-                        <label style='margin-top:15px' >Razão Social:</label>
-                        <input class='form-control' type='text' id='socialReasonInput' />
-                        <label style='margin-top:15px' id='cnpjLabel'>CNPJ:</label>
-                        <input class='form-control' type='text' id='cnpjInput' />
-                        <label style='margin-top:15px' >Cidade:</label>
-                        <input class='form-control' type='text' id='cityStoreInput'/>
-                        <label style='margin-top:15px' >Estado:</label>
-                        <input class='form-control' type='text' id='stateStoreInput'/>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <span id='rStoreWarning'></span>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button id='rStoreSubmit' type="button" class="btn btn-primary" onclick='addStores()'>Cadastrar</button>
-                </div>
-                </div>
+    <div class="modal fade" id="rStoreModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <label class="modal-title" id="rStoreMLabel"> Registrar nova loja </label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class='form-group'>
+                    <input type='hidden' id='idStoreInput'/>
+                    <label style='margin-top:15px' >Nome Loja:</label>
+                    <input class='form-control' type='text' id='nameStoreInput'/>
+                    <label style='margin-top:15px' >Razão Social:</label>
+                    <input class='form-control' type='text' id='socialReasonInput' />
+                    <label style='margin-top:15px' id='cnpjLabel'>CNPJ:</label>
+                    <input class='form-control' type='text' id='cnpjInput' />
+                    <label style='margin-top:15px' >Cidade:</label>
+                    <input class='form-control' type='text' id='cityStoreInput'/>
+                    <label style='margin-top:15px' >Estado:</label>
+                    <input class='form-control' type='text' id='stateStoreInput'/>
+                </form>
+                <label id='rStoreWarning' style='margin-top: 10px;'></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <input id='rStoreSubmit' type="button" class="btn btn-primary" onclick='addStores()' value='Cadastrar'/>
+            </div>
             </div>
         </div>
+    </div>
+
+<!--=========================== DELETE MODAL ==================================-->
+    <div class="modal fade" id="dStoreModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <label class="modal-title" id="dStoreMLabel"></label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id='dModalBody' class='modal-body' style='display: none'>
+                <span id='dStoreWarning'></span>
+            </div>
+            <div class="modal-footer">
+            <input type='hidden' id='idStoreInputDelete'/>
+                
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <input id='dStoreSubmit' type="button" class="btn btn-danger" onclick="deleteStore(document.querySelector('input[id=idStoreInputDelete]').value)" value='Excluir'/>
+            </div>
+            </div>
+        </div>
+    </div>
+
 <!--=========================== END MODAL ==================================-->
 
-        <nav class="navbar navbar-dark" style="background-color: #a3543d;">
+        <nav class="navbar navbar-dark" style="background-color: #333231;">
             <a style="color: white; font-size: 17px; font-style:italic;">Bem vindo 
                 <?php
                     echo $_SESSION['userAdm'];
                 ?>
                 !
             </a>
-            <button class='btn-register' data-toggle='modal' data-target='#rStoreModal' style='margin-left: 81%;'>Registrar Loja</button>
-            <button class='btn-register' style="margin-left: 92%; width: 72px;" onclick='backHome()'>Voltar</button>
+            <button class='btn-php-store' data-toggle='modal' data-target='#rStoreModal' style='margin-left: 79%;'>Registrar Loja</button>
+            <button class='btn-php-store' style="margin-left: 92%; width: 72px;" onclick='backFirstSession()'>Voltar</button>
         </nav>
-        <div id="allStores" class='col-md-12'>
-            <table class="table">
+        <div class='col-md-12 form-group m-t-lg'>
+            <div class='div-search-icon'>
+                <i style='color: #fff; font-size: 22px' class="fas fa-search"></i>
+            </div>
+            <input class='form-control input-search-store' id='searchBar' type='text' onkeyup='findStoreByName()' placeholder='Pesquise pelo nome da loja: '/>
+        </div>
+        <div id="allStores" class='col-md-12 div-present-stores'>
+            <table class="table" style='color: #fff'>
                 <thead>
                     <tr>
                         <th>Nome Loja:</th>

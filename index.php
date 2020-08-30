@@ -16,7 +16,7 @@
                 <p></p>
                 <input class="input-style-default" type="text" name="password" placeholder="Senha"/>
                 <p></p>
-                <input class="btn-register" style="margin-left: -6%; margin-top: 1.5%;" type="submit" name="btnLogin" value="Entrar"/>
+                <input class="btn-php-store" style="margin-left: -6%; margin-top: 1.5%;" type="submit" name="btnLogin" value="Entrar"/>
             </form>
             <?php 
                 echo $error_login;

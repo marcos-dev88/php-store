@@ -1,13 +1,5 @@
 body{
-    background-color: #d6ddd8
-}
-
-.list-style-div{
-    margin-left: 6%; 
-    border: solid 3px #a3543d; 
-    margin-top: 2%; 
-    width: 33%; 
-    padding-right: 3%;
+    background-color: #a4a4a4;
 }
 
 .input-search-store{
@@ -20,51 +12,29 @@ body{
     border: solid azure;
 }
 
-.button-back-style{
-    background-color: #630c8b;
-    text-align: center;
-    margin-left: 92%;
-    width: 72px;
-    height: 28px;
-    position: absolute;
-    border-radius: 8px;
-    border: #8ee4e7 solid 2px;
-    color: white;
-}
 
-.button-back-style:hover{
-    background-color: #6f38c7;
-}
-
-.list-ul-user{
-    list-style-type: none;
-    margin-top: 2%;
-}
-
-.btn-register{
-    background-color: #630c8b;
+.btn-php-store{
+    background-color: #df3845;
     text-align: center;
     width: 12%;
     height: 28px;
     position: absolute;
     margin-left: 13%;
     border-radius: 8px;
-    border: #8ee4e7 solid 2px;
+    border: #918a8b solid 2px;
     color: white;
     margin-left: 79%;
 }
 
-.btn-register:hover{
-    background-color: #6f38c7;
+.btn-php-store:hover{
+    background-color: #d52e2e;
 }
-
-
 
 .form-div-index{
     text-align: center;
     width: 40%;
     height: 35%;
-    background-color: #a3543d;
+    background-color: #333231;
     margin-left: 30%;
     border-radius: 8px;
     margin-top: 10%;
@@ -111,14 +81,30 @@ body{
     border-radius: 50px;
 }
 
-.form-register{
-    background-color: #a3543d;
-    text-align: center;
-    width: 40%;
-    height: 56%;
-    margin-left: 30.8%;
-    border-radius: 8px;
-    margin-top: 5%;
-    position: absolute;
-    margin-bottom: 20%;
+.div-present-stores{
+    border: 2px  #5e5858 solid;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 1.5%;
+    width: 97%;
+}
+
+.div-search-icon{
+    margin-top: 10px;
+    padding: 7px;
+    border: 2px solid #918a8b;
+    width: 39px;
+    height: 40px;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #9b9292;
+}
+
+.input-search-store{
+    margin-top: -39.5px;
+    margin-bottom: -32px;
+    width: 35%;
+    margin-left: 39px;
+    border: 1px solid #918a8b;
+    height: 40px;
+    border-radius: 0px 4px 4px 0px;
 }

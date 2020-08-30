@@ -22,15 +22,15 @@
         <script src='../scripts/js/store.js' defer></script>
     </head>
     <body>
-        <nav class="navbar navbar-dark" style="background-color: #a3543d;">
+        <nav class="navbar navbar-dark" style="background-color: #333231;">
             <a style="color: white; font-size: 17px; font-style:italic;">Bem vindo 
                 <?php
                     echo $_SESSION['userAdm'];
                 ?>
                 !
             </a>
-            <button class='btn-register' style='margin-left: 78.8%;' onclick='goStoreList()'>Lojas Registradas</button>
-            <button class='btn-register' style="margin-left: 92%; width: 72px;" onclick='backHome()'>Sair</button>
+            <button class='btn-php-store' style='margin-left: 78.8%;' onclick='goStoreList()'>Lojas Registradas</button>
+            <button class='btn-php-store' style="margin-left: 92%; width: 72px;" onclick='backHome()'>Sair</button>
         </nav>
     </body>
 </html>
