@@ -21,14 +21,14 @@
     </head>
     
     <body>
-        <nav class="navbar navbar-dark" style="background-color: #a3543d;">
+        <nav class="navbar navbar-dark" style="background-color: #333231;">
             <a style="color: white; font-size: 17px; font-style:italic;">Bem vindo 
                 <?php
                     echo $_SESSION['user'];
                 ?>
                 !
             </a>
-            <button class='btn-register' style="margin-left: 92%; width: 72px;" onclick='backHome()'>Sair</button>
+            <button class='btn-php-store' style="margin-left: 92%; width: 72px;" onclick='backHome()'>Sair</button>
         </nav>
     </body>
 
