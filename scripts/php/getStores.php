@@ -3,17 +3,15 @@
 
     $storesq = "SELECT * from loja";
 
-    $get_stores = mysqli_query($conn, $storesq);
+    $getStores = mysqli_query($conn, $storesq);
 
-    if(mysqli_num_rows($get_stores) == 0){
-        echo '<tr>
-                <td>Não há nenhuma loja registrada.</td>
-              </tr>';
+    if(mysqli_num_rows($getStores) == 0){
+        echo json_encode(array('status'=> 404));
     }else{
-        while($row = mysqli_fetch_assoc($get_stores)){
+        while($row = mysqli_fetch_assoc($getStores)){
             $data[] = $row;
         }
 
-        echo json_encode(array('store'=>$data));
+        echo json_encode(array('store'=>$data, 'status'=> 200));
     }
 ?>

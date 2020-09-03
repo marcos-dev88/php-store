@@ -33,7 +33,7 @@ function findStoreByName() {
 /*========== GET STORE =========*/
 function showStores(){
     var storeList = document.querySelector("tbody[id='getStoreList']");
-    let url = '../scripts/php/getStores.php';
+    const url = '../scripts/php/getStores.php';
     
     let header = {
         method: 'GET',
@@ -50,25 +50,32 @@ function showStores(){
     .then(response => response.json())
     .then(function(data){
 
-        for(let i = 0; i < data.store.length; i++){
-            storeList.innerHTML +=  `<tr>
-                <td>${data.store[i].nome}</td>
-                <td>${data.store[i].razao_social}</td>
-                <td>${data.store[i].cnpj}</td>
-                <td>${data.store[i].cidade}</td>
-                <td>${data.store[i].estado}</td>
-                <td>
-                    <a href="" class='btn btn-info'>
-                        <i class='fas fa-user'></i>
-                    </a>
-                    <button class='btn btn-danger'  data-toggle='modal' data-target='#dStoreModal' onclick="sendDataToDelete(${data.store[i].id}, '${data.store[i].nome}')">
-                        <i class='fa fa-trash' aria-hidden='true'></i>
-                    </button>
-                    <button class='btn btn-success' data-toggle='modal' data-target='#rStoreModal' onclick='updateStore(${data.store[i].id})'>
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </td>
-            </tr>`;
+        if(data.status == 404){
+            storeList.innerHTML += `
+                <tr>
+                    <td> Não há nenhuma loja registrada. </td>
+                </tr>`;
+        }else{
+            for(let i = 0; i < data.store.length; i++){
+                storeList.innerHTML +=  `<tr>
+                    <td>${data.store[i].nome}</td>
+                    <td>${data.store[i].razao_social}</td>
+                    <td>${data.store[i].cnpj}</td>
+                    <td>${data.store[i].cidade}</td>
+                    <td>${data.store[i].estado}</td>
+                    <td>
+                        <a href="pageShowStoreUsers.php?nameStore=${data.store[i].nome}&idStore=${data.store[i].id}" class='btn btn-info'>
+                            <i class='fas fa-user'></i>
+                        </a>
+                        <button class='btn btn-danger'  data-toggle='modal' data-target='#dStoreModal' onclick="sendDataToDelete(${data.store[i].id}, '${data.store[i].nome}')">
+                            <i class='fa fa-trash' aria-hidden='true'></i>
+                        </button>
+                        <button class='btn btn-success' data-toggle='modal' data-target='#rStoreModal' onclick='updateStore(${data.store[i].id})'>
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </td>
+                </tr>`;
+            }
         }
     }).catch(error => {
         console.error(error)
@@ -77,7 +84,7 @@ function showStores(){
 
 /*========== CREATE STORE =========*/
 function addStores(){
-    let url = '../scripts/php/registerStore.php';
+    const url = '../scripts/php/registerStore.php';
 
 
     let dataJson = {
@@ -106,24 +113,60 @@ function addStores(){
     switch(true){
         case dataJson.nameStoreInputJ == '' || dataJson.nameStoreInputJ == null:
             warningRegister.innerHTML = 'Insira um nome para a sua loja.';
+            $('#rStoreModal').on('hidden.bs.modal', function () {
+                $(this).find('form').trigger('reset');
+                warningRegister.innerHTML = '';
+            });
         break;
         case dataJson.socialReasonJ == '' || dataJson.socialReasonJ == null:
             warningRegister.innerHTML = 'Insira uma razão social para a sua loja.';
+            $('#rStoreModal').on('hidden.bs.modal', function () {
+                $(this).find('form').trigger('reset');
+                warningRegister.innerHTML = '';
+            });
         break;
         case dataJson.cnpjJ == '' || dataJson.cnpjJ == null:
             warningRegister.innerHTML = 'Insira um CNPJ para a sua loja.';
+            $('#rStoreModal').on('hidden.bs.modal', function () {
+                $(this).find('form').trigger('reset');
+                warningRegister.innerHTML = '';
+            });
         break;
         case dataJson.cityStoreJ == '' || dataJson.cityStoreJ == null:
             warningRegister.innerHTML = 'Insira uma cidade para a sua loja.';
+            $('#rStoreModal').on('hidden.bs.modal', function () {
+                $(this).find('form').trigger('reset');
+                warningRegister.innerHTML = '';
+            });
         break;
         case dataJson.stateStoreJ == '' || dataJson.stateStoreJ == null:
             warningRegister.innerHTML = 'Insira um estado para a sua loja.';
+            $('#rStoreModal').on('hidden.bs.modal', function () {
+                $(this).find('form').trigger('reset');
+                warningRegister.innerHTML = '';
+            });
         break;
         default:
             fetch(url, header)
-            .then(response => response.text())
-            .then(function(){
-                warningRegister.innerHTML = 'Loja Cadastrada com sucesso!';
+            .then(response => response.json())
+            .then(function(data){
+
+                switch(true){
+                    case data.status == 200:
+                        warningRegister.innerHTML = 'Loja cadastrada com sucesso!';
+                    break;
+                    case data.status == 201:
+                        warningRegister.innerHTML = 'Loja alterada com sucesso!';
+                    break;
+                    case data.status == 500:
+                        warningRegister.innerHTML = 'Houve um erro ao cadastrar a loja.';
+                    case data.status == 501:
+                        warningRegister.innerHTML = 'Houve um erro ao alterar a loja.';
+                    break;
+                    default:
+                        warningRegister.innerHTML = 'Houve um erro inesperado, chame o desenvolvedor.';
+                }
+        
                 setTimeout(() => {
                     location.reload();
                 }, 1200);
@@ -140,7 +183,7 @@ function sendDataToDelete(id, storeName){
 }
 
 function deleteStore(id){
-    let url = '../scripts/php/deleteStore.php';
+    const url = '../scripts/php/deleteStore.php';
 
     let header = {
         method: 'POST',
@@ -155,15 +198,19 @@ function deleteStore(id){
     }
 
     fetch(url, header)
-    .then(response => response.text())
+    .then(response => response.json())
     .then(function(data){
         console.log(data);
-        document.querySelector('span[id=dStoreWarning]').innerHTML = 'Loja excluida com sucesso!';
-        document.querySelector('div[id=dModalBody]').style.display = '';
-       setTimeout(() => {
-            location.reload();
-        }, 1200);
-
+        if(data.status == 200){
+            document.querySelector('span[id=dStoreWarning]').innerHTML = 'Loja excluida com sucesso!';
+            document.querySelector('div[id=dModalBody]').style.display = '';
+            setTimeout(() => {
+                location.reload();
+            }, 1200);
+        }else{
+            document.querySelector('span[id=dStoreWarning]').innerHTML = 'Houve um problema ao excluir a loja.';
+        }
+        
     }).catch(error => {
         console.log(error);
     })
@@ -172,7 +219,7 @@ function deleteStore(id){
 
 /*========== UPDATE STORE =========*/
 function updateStore(id){
-    let url = '../scripts/php/getStoreToUp.php';
+    const url = '../scripts/php/getStoreToUp.php';
 
     let header = {
         method: 'POST',
@@ -187,17 +234,15 @@ function updateStore(id){
     }
 
     fetch(url, header)
-    .then(response => response.text())
+    .then(response => response.json())
     .then(function(data){
-        console.log(data);
-        let parseData = JSON.parse(data);
-        document.querySelector('#rStoreMLabel').innerHTML = 'Alterar a loja: ' + parseData.upstore[0].nome;
-        document.querySelector('input[id=idStoreInput]').value = parseData.upstore[0].id;
-        document.querySelector('input[id=nameStoreInput]').value = parseData.upstore[0].nome;
-        document.querySelector('input[id=socialReasonInput]').value = parseData.upstore[0].razao_social;
-        document.querySelector('input[id=cityStoreInput]').value = parseData.upstore[0].cidade;
-        document.querySelector('input[id=stateStoreInput]').value = parseData.upstore[0].estado;
-        document.querySelector('input[id=cnpjInput]').value = parseData.upstore[0].cnpj;
+        document.querySelector('#rStoreMLabel').innerHTML = 'Alterar a loja: ' + data.upstore[0].nome;
+        document.querySelector('input[id=idStoreInput]').value = data.upstore[0].id;
+        document.querySelector('input[id=nameStoreInput]').value = data.upstore[0].nome;
+        document.querySelector('input[id=socialReasonInput]').value = data.upstore[0].razao_social;
+        document.querySelector('input[id=cityStoreInput]').value = data.upstore[0].cidade;
+        document.querySelector('input[id=stateStoreInput]').value = data.upstore[0].estado;
+        document.querySelector('input[id=cnpjInput]').value = data.upstore[0].cnpj;
         document.querySelector('input[id=cnpjInput]').style.display = 'none';
         document.querySelector('label[id=cnpjLabel]').style.display = 'none';
         document.getElementById('rStoreSubmit').value = 'Alterar'
@@ -209,7 +254,7 @@ function updateStore(id){
             document.querySelector('label[id=rStoreMLabel]').innerHTML = 'Registrar nova loja';
             document.querySelector('input[id=cnpjInput]').style.display = '';
             document.querySelector('label[id=cnpjLabel]').style.display = '';
-            document.querySelector('label[id=rStoreWarning]').style.display = 'none';
+            document.querySelector('label[id=rStoreWarning]').innerHTML = '';
         });
 
     }).catch(error => {

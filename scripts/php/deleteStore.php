@@ -8,7 +8,9 @@
 
     $deleteStore = mysqli_query($conn, $sqlStore);
 
-    if($deleteStore){
-        echo 'Loja excluida com sucesso';
+    if(!$deleteStore){
+        echo json_encode(array('status'=>500));
+    }else{
+        echo json_encode(array('status'=>200));
     }
 ?>

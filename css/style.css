@@ -82,8 +82,7 @@ body{
 }
 
 .div-present-stores{
-    border: 2px  #5e5858 solid;
-    border-radius: 10px;
+    box-shadow: 2px 2px 5px -2px black;
     margin-top: 50px;
     margin-left: 1.5%;
     width: 97%;
@@ -107,4 +106,12 @@ body{
     border: 1px solid #918a8b;
     height: 40px;
     border-radius: 0px 4px 4px 0px;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+   
+    border-top: 1px solid #ccc;
+        
 }
