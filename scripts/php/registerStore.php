@@ -2,7 +2,6 @@
     require_once('connection.php');
 
     $_POST = file_get_contents('php://input');
-
     $jsonData = json_decode($_POST);
 
     $idStore = $jsonData->idStoreInputJ;
@@ -22,7 +21,9 @@
         $updateStore = mysqli_query($conn, $sqlStoreU);
 
         if(!$updateStore){
-            echo "Erro ao alterar dados no banco-> ".mysqli_connect_error();
+            echo json_encode(array('status'=> 501));
+        }else{
+            echo json_encode(array('status'=> 201));
         }
     }else{
         $sqlStoreI = "INSERT INTO loja(nome, razao_social, cnpj, cidade, estado)
@@ -32,7 +33,9 @@
         $insertStore = mysqli_query($conn, $sqlStoreI);
 
         if(!$insertStore){
-            echo "Erro ao inserir dados no banco -> ".mysqli_connect_error();
+            echo json_encode(array('status'=> 500));
+        }else{
+            echo json_encode(array('status'=> 200));
         }
     }
     

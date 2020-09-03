@@ -36,15 +36,15 @@
             <div class="modal-body">
                 <form class='form-group'>
                     <input type='hidden' id='idStoreInput'/>
-                    <label style='margin-top:15px' >Nome Loja:</label>
+                    <label style='margin-top:15px' >*Nome Loja:</label>
                     <input class='form-control' type='text' id='nameStoreInput'/>
-                    <label style='margin-top:15px' >Razão Social:</label>
+                    <label style='margin-top:15px' >*Razão Social:</label>
                     <input class='form-control' type='text' id='socialReasonInput' />
-                    <label style='margin-top:15px' id='cnpjLabel'>CNPJ:</label>
+                    <label style='margin-top:15px' id='cnpjLabel'>*CNPJ:</label>
                     <input class='form-control' type='text' id='cnpjInput' />
-                    <label style='margin-top:15px' >Cidade:</label>
+                    <label style='margin-top:15px' >*Cidade:</label>
                     <input class='form-control' type='text' id='cityStoreInput'/>
-                    <label style='margin-top:15px' >Estado:</label>
+                    <label style='margin-top:15px' >*Estado:</label>
                     <input class='form-control' type='text' id='stateStoreInput'/>
                 </form>
                 <label id='rStoreWarning' style='margin-top: 10px;'></label>
@@ -98,16 +98,16 @@
             </div>
             <input class='form-control input-search-store' id='searchBar' type='text' onkeyup='findStoreByName()' placeholder='Pesquise pelo nome da loja: '/>
         </div>
-        <div id="allStores" class='col-md-12 div-present-stores'>
-            <table class="table" style='color: #fff'>
+        <div id="allStores" class='col-md-12 div-present-stores' style='background-color: #333231;'>
+            <table class="table" style='color: #fff;'>
                 <thead>
                     <tr>
-                        <th>Nome Loja:</th>
-                        <th>Razão Social:</th>
-                        <th>CNPJ:</th>
-                        <th>Cidade:</th>
-                        <th>Estado:</th>
-                        <th></th>
+                        <th style='border-top: none !important;'>Nome Loja:</th>
+                        <th style='border-top: none !important;'>Razão Social:</th>
+                        <th style='border-top: none !important;'>CNPJ:</th>
+                        <th style='border-top: none !important;'>Cidade:</th>
+                        <th style='border-top: none !important;'>Estado:</th>
+                        <th style='border-top: none !important;'></th>
                     </tr>
                 </thead>
                 <tbody id='getStoreList'>

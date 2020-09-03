@@ -14,7 +14,7 @@
             <form action="scripts/php/login.php" method="POST">
                 <input class="first-input-style" type="text" name="nickname" placeholder="Usuário"/>
                 <p></p>
-                <input class="input-style-default" type="text" name="password" placeholder="Senha"/>
+                <input class="input-style-default" type="password" name="password" placeholder="Senha"/>
                 <p></p>
                 <input class="btn-php-store" style="margin-left: -6%; margin-top: 1.5%;" type="submit" name="btnLogin" value="Entrar"/>
             </form>
