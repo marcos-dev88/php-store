@@ -36,15 +36,15 @@
             <div class="modal-body">
                 <form class='form-group'>
                     <input type='hidden' id='idStoreInput'/>
-                    <label style='margin-top:15px' >*Nome Loja:</label>
+                    <label style='margin-top:15px' >Nome Loja <span class='required'>*</span>:</label>
                     <input class='form-control' type='text' id='nameStoreInput'/>
-                    <label style='margin-top:15px' >*Razão Social:</label>
+                    <label style='margin-top:15px' >Razão Social <span class='required'>*</span>:</label>
                     <input class='form-control' type='text' id='socialReasonInput' />
-                    <label style='margin-top:15px' id='cnpjLabel'>*CNPJ:</label>
+                    <label style='margin-top:15px' id='cnpjLabel'>CNPJ <span class='required'>*</span>:</label>
                     <input class='form-control' type='text' id='cnpjInput' />
-                    <label style='margin-top:15px' >*Cidade:</label>
+                    <label style='margin-top:15px' >Cidade <span class='required'>*</span>:</label>
                     <input class='form-control' type='text' id='cityStoreInput'/>
-                    <label style='margin-top:15px' >*Estado:</label>
+                    <label style='margin-top:15px' >Estado <span class='required'>*</span>:</label>
                     <input class='form-control' type='text' id='stateStoreInput'/>
                 </form>
                 <label id='rStoreWarning' style='margin-top: 10px;'></label>

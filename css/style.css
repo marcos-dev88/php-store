@@ -115,3 +115,7 @@ body{
     border-top: 1px solid #ccc;
         
 }
+
+.required{
+    color: red;
+}

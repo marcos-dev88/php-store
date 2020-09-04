@@ -158,6 +158,9 @@ function addStores(){
                     case data.status == 201:
                         warningRegister.innerHTML = 'Loja alterada com sucesso!';
                     break;
+                    case data.status == 406:
+                        warningUpdate.innerHTML = 'Já existe uma loja com este CNPJ.';
+                    break;
                     case data.status == 500:
                         warningRegister.innerHTML = 'Houve um erro ao cadastrar a loja.';
                     case data.status == 501:
@@ -169,7 +172,7 @@ function addStores(){
         
                 setTimeout(() => {
                     location.reload();
-                }, 1200);
+                }, 1500);
             }).catch(error => {
                 console.log(error);
             });
