@@ -141,6 +141,9 @@ function addUsers(){
                     case data.status == 201:
                         warningUpdate.innerHTML = 'Usuário alterado com sucesso!';
                     break;
+                    case data.status == 406:
+                        warningUpdate.innerHTML = 'Já existe um usuário com este nome, tente usar outro.';
+                    break;
                     case data.status == 500:
                         warningUpdate.innerHTML = 'Houve um erro ao cadastrar o usuário!';
                     case data.status == 501:

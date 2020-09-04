@@ -36,16 +36,16 @@
                     <div class="modal-body">
                         <form class='form-group'>
                             <input type='hidden' id='idUserInput'/>
-                            <label style='margin-top:15px' >*Nome de Usuário:</label>
+                            <label style='margin-top:15px' >Nome de Usuário <span class='required'>*</span>:</label>
                             <input class='form-control' type='text' id='nickNameInput'/>
-                            <label style='margin-top:15px' >*Cargo:</label>
+                            <label style='margin-top:15px' >Cargo <span class='required'>*</span>:</label>
                             <select class="form-control" id='roleSelect'>
                                 <option value='admin'>Administrador</option>
                                 <option value='user'>Usuário</option>
                             </select>
-                            <label style='margin-top:15px' id='passULabel'>*Senha:</label>
+                            <label style='margin-top:15px' id='passULabel'>Senha <span class='required'>*</span>:</label>
                             <input class='form-control' type='password' id='passwordInput' />
-                            <label style='margin-top:15px' >*Data de Nascimento:</label>
+                            <label style='margin-top:15px' >Data de Nascimento <span class='required'>*</span>:</label>
                             <input class='form-control' type='text' id='birthDateInput'/>
                         </form>
                         <label id='rUserWarning' style='margin-top: 10px;'></label>

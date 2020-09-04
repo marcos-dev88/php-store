@@ -11,31 +11,39 @@
     $cityStore = $jsonData->cityStoreJ;
     $stateStore = $jsonData->stateStoreJ;
 
-    if($idStore != 0 && $idStore != null){
-        $sqlStoreU = "UPDATE loja 
-        SET nome = '".$nameStore."', 
-        razao_social = '".$socialReason."', 
-        cidade = '".$cityStore."', 
-        estado = '".$stateStore."' WHERE id = '".$idStore."';";
+    $sqlStoreS = "SELECT * FROM loja WHERE cnpj = '".$cnpj."'";
 
-        $updateStore = mysqli_query($conn, $sqlStoreU);
+    $searchCnpjStore = mysqli_query($conn, $sqlStoreS);
 
-        if(!$updateStore){
-            echo json_encode(array('status'=> 501));
-        }else{
-            echo json_encode(array('status'=> 201));
-        }
+    if(mysqli_num_rows($searchCnpjStore) != 0){
+        echo json_encode(array('status' => 406));
     }else{
-        $sqlStoreI = "INSERT INTO loja(nome, razao_social, cnpj, cidade, estado)
-            VALUES
-        ('".$nameStore."', '".$socialReason."', '".$cnpj."', '".$cityStore."', '".$stateStore."')";
+        if($idStore != 0 && $idStore != null){
+            $sqlStoreU = "UPDATE loja 
+            SET nome = '".$nameStore."', 
+            razao_social = '".$socialReason."', 
+            cidade = '".$cityStore."', 
+            estado = '".$stateStore."' WHERE id = '".$idStore."';";
 
-        $insertStore = mysqli_query($conn, $sqlStoreI);
-
-        if(!$insertStore){
-            echo json_encode(array('status'=> 500));
+            $updateStore = mysqli_query($conn, $sqlStoreU);
+            
+            if(!$updateStore){
+                echo json_encode(array('status'=> 501));
+            }else{
+                echo json_encode(array('status'=> 201));
+            }
         }else{
-            echo json_encode(array('status'=> 200));
+            $sqlStoreI = "INSERT INTO loja(nome, razao_social, cnpj, cidade, estado)
+                VALUES
+            ('".$nameStore."', '".$socialReason."', '".$cnpj."', '".$cityStore."', '".$stateStore."')";
+
+            $insertStore = mysqli_query($conn, $sqlStoreI);
+
+            if(!$insertStore){
+                echo json_encode(array('status'=> 500));
+            }else{
+                echo json_encode(array('status'=> 200));
+            }
         }
     }
     
