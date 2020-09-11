@@ -12,7 +12,7 @@
 
 <html>
     <head>
-        <title>Stores</title>
+        <title>Lojas</title>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -41,7 +41,7 @@
                     <label style='margin-top:15px' >Razão Social <span class='required'>*</span>:</label>
                     <input class='form-control' type='text' id='socialReasonInput' />
                     <label style='margin-top:15px' id='cnpjLabel'>CNPJ <span class='required'>*</span>:</label>
-                    <input class='form-control' type='text' id='cnpjInput' />
+                    <input class='form-control' type='text' id='cnpjInput'/>
                     <label style='margin-top:15px' >Cidade <span class='required'>*</span>:</label>
                     <input class='form-control' type='text' id='cityStoreInput'/>
                     <label style='margin-top:15px' >Estado <span class='required'>*</span>:</label>
@@ -50,7 +50,7 @@
                 <label id='rStoreWarning' style='margin-top: 10px;'></label>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick='cleanFields()'>Cancelar</button>
                 <input id='rStoreSubmit' type="button" class="btn btn-primary" onclick='addStores()' value='Cadastrar'/>
             </div>
             </div>

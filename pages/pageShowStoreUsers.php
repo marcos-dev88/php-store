@@ -44,9 +44,12 @@
                                 <option value='user'>Usuário</option>
                             </select>
                             <label style='margin-top:15px' id='passULabel'>Senha <span class='required'>*</span>:</label>
-                            <input class='form-control' type='password' id='passwordInput' />
+                            <input class='form-control' type='password' id='passwordInput'/>
+                            <label id='showPassIcon' class='fas fa-eye show-pass-input'>
+                                <input type='checkbox' style='opacity: 0' checked='checked' onclick='showPassword()' id='changeInputB'/>
+                            </label>
                             <label style='margin-top:15px' >Data de Nascimento <span class='required'>*</span>:</label>
-                            <input class='form-control' type='text' id='birthDateInput'/>
+                            <input class='form-control' type='date' placeholder='dd/mm/yyyy' id='birthDateInput' onkeypress='dateMask(this)'/>
                         </form>
                         <label id='rUserWarning' style='margin-top: 10px;'></label>
                     </div>
@@ -117,6 +120,17 @@
                 </tbody>
             </table>
         </div>
-
     </body>
+    <script>
+        function showPassword(){
+            let checkbox = document.querySelector('input[id=changeInputB]');
+            if(checkbox.checked){
+                document.querySelector('input[id=passwordInput').type = 'text';
+                document.querySelector('label[id=showPassIcon]').className = 'fas fa-eye-slash show-pass-input';
+            }else{
+                document.querySelector('input[id=passwordInput').type = 'password';
+                document.querySelector('label[id=showPassIcon]').className = 'fas fa-eye show-pass-input';
+            }
+        }
+    </script>
 </html>

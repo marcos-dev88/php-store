@@ -29,6 +29,37 @@ function findStoreByName() {
     }
 }
 
+document.querySelector("input[id=cnpjInput]").addEventListener("keypress", function (e) {
+    var allowChar = '0123456789/.-';
+    function contains(stringValue, charValue) {
+        return stringValue.indexOf(charValue) > -1;
+    }
+    var invalidKey = e.key.length === 1 && !contains(allowChar, e.key)
+            || e.key === '.' && contains(e.target.value, '.');
+    invalidKey && e.preventDefault();
+    
+    var cnpj = document.querySelector('input[id=cnpjInput]');
+
+    switch(true){
+        case cnpj.value.length == 2:
+            cnpj.value += ".";
+        break;
+        case  cnpj.value.length == 6:
+            cnpj.value += ".";
+        break;
+        case cnpj.value.length == 10:
+            cnpj.value += "/";
+        break;
+        case cnpj.value.length == 15:
+            cnpj.value += "-";
+        break; 
+    }
+
+    if (cnpj.value.length > 17) {
+        cnpj.value = cnpj.value.substring(0, 17);
+        return true;
+    }
+});
 
 /*========== GET STORE =========*/
 function showStores(){
@@ -108,43 +139,31 @@ function addStores(){
         body: JSON.stringify(dataJson)
     }
 
-    var warningRegister = document.querySelector('label[id=rStoreWarning]');
+    let warningRegister = document.querySelector('label[id=rStoreWarning]');
     
     switch(true){
         case dataJson.nameStoreInputJ == '' || dataJson.nameStoreInputJ == null:
             warningRegister.innerHTML = 'Insira um nome para a sua loja.';
-            $('#rStoreModal').on('hidden.bs.modal', function () {
-                $(this).find('form').trigger('reset');
-                warningRegister.innerHTML = '';
-            });
+            cleanFields();
         break;
         case dataJson.socialReasonJ == '' || dataJson.socialReasonJ == null:
             warningRegister.innerHTML = 'Insira uma razão social para a sua loja.';
-            $('#rStoreModal').on('hidden.bs.modal', function () {
-                $(this).find('form').trigger('reset');
-                warningRegister.innerHTML = '';
-            });
+            cleanFields();
         break;
         case dataJson.cnpjJ == '' || dataJson.cnpjJ == null:
             warningRegister.innerHTML = 'Insira um CNPJ para a sua loja.';
-            $('#rStoreModal').on('hidden.bs.modal', function () {
-                $(this).find('form').trigger('reset');
-                warningRegister.innerHTML = '';
-            });
+            cleanFields();
+        case dataJson.cnpjJ.length < 18:
+            warningRegister.innerHTML = 'Insira um CNPJ válido.';
+            cleanFields();
         break;
         case dataJson.cityStoreJ == '' || dataJson.cityStoreJ == null:
             warningRegister.innerHTML = 'Insira uma cidade para a sua loja.';
-            $('#rStoreModal').on('hidden.bs.modal', function () {
-                $(this).find('form').trigger('reset');
-                warningRegister.innerHTML = '';
-            });
+            cleanFields();
         break;
         case dataJson.stateStoreJ == '' || dataJson.stateStoreJ == null:
             warningRegister.innerHTML = 'Insira um estado para a sua loja.';
-            $('#rStoreModal').on('hidden.bs.modal', function () {
-                $(this).find('form').trigger('reset');
-                warningRegister.innerHTML = '';
-            });
+            cleanFields();
         break;
         default:
             fetch(url, header)
@@ -154,12 +173,14 @@ function addStores(){
                 switch(true){
                     case data.status == 200:
                         warningRegister.innerHTML = 'Loja cadastrada com sucesso!';
+                        reloadPage();
                     break;
                     case data.status == 201:
                         warningRegister.innerHTML = 'Loja alterada com sucesso!';
+                        reloadPage();
                     break;
                     case data.status == 406:
-                        warningUpdate.innerHTML = 'Já existe uma loja com este CNPJ.';
+                        warningRegister.innerHTML = 'Já existe uma loja com este CNPJ.';
                     break;
                     case data.status == 500:
                         warningRegister.innerHTML = 'Houve um erro ao cadastrar a loja.';
@@ -170,9 +191,6 @@ function addStores(){
                         warningRegister.innerHTML = 'Houve um erro inesperado, chame o desenvolvedor.';
                 }
         
-                setTimeout(() => {
-                    location.reload();
-                }, 1500);
             }).catch(error => {
                 console.log(error);
             });
@@ -207,9 +225,7 @@ function deleteStore(id){
         if(data.status == 200){
             document.querySelector('span[id=dStoreWarning]').innerHTML = 'Loja excluida com sucesso!';
             document.querySelector('div[id=dModalBody]').style.display = '';
-            setTimeout(() => {
-                location.reload();
-            }, 1200);
+            reloadPage();
         }else{
             document.querySelector('span[id=dStoreWarning]').innerHTML = 'Houve um problema ao excluir a loja.';
         }
@@ -263,4 +279,17 @@ function updateStore(id){
     }).catch(error => {
         console.log(error);
     })
+}
+
+function cleanFields(){
+    $('#rStoreModal').on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+        document.querySelector('label[id=rStoreWarning]').innerHTML = '';
+    });
+}
+
+function reloadPage(){
+    setTimeout(() => {
+        location.reload();
+    }, 1200);
 }
