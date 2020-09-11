@@ -119,3 +119,16 @@ body{
 .required{
     color: red;
 }
+
+.show-pass-input{
+    position: absolute;
+    margin-left: 88%;
+    margin-top: -5.6%;
+}
+
+.show-pass-input-index{
+    z-index: 3;
+    position: absolute;
+    margin-left: -27px;
+    margin-top: 5px;
+}

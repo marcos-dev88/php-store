@@ -11,27 +11,28 @@
     $cityStore = $jsonData->cityStoreJ;
     $stateStore = $jsonData->stateStoreJ;
 
-    $sqlStoreS = "SELECT * FROM loja WHERE cnpj = '".$cnpj."'";
 
-    $searchCnpjStore = mysqli_query($conn, $sqlStoreS);
+    if($idStore != 0 && $idStore != null){
+        $sqlStoreU = "UPDATE loja 
+        SET nome = '".$nameStore."', 
+        razao_social = '".$socialReason."', 
+        cidade = '".$cityStore."', 
+        estado = '".$stateStore."' WHERE id = '".$idStore."';";
 
-    if(mysqli_num_rows($searchCnpjStore) != 0){
-        echo json_encode(array('status' => 406));
+        $updateStore = mysqli_query($conn, $sqlStoreU);
+        
+        if(!$updateStore){
+            echo json_encode(array('status'=> 501));
+        }else{
+            echo json_encode(array('status'=> 201));
+        }
     }else{
-        if($idStore != 0 && $idStore != null){
-            $sqlStoreU = "UPDATE loja 
-            SET nome = '".$nameStore."', 
-            razao_social = '".$socialReason."', 
-            cidade = '".$cityStore."', 
-            estado = '".$stateStore."' WHERE id = '".$idStore."';";
+        $sqlStoreS = "SELECT * FROM loja WHERE cnpj = '".$cnpj."'";
 
-            $updateStore = mysqli_query($conn, $sqlStoreU);
-            
-            if(!$updateStore){
-                echo json_encode(array('status'=> 501));
-            }else{
-                echo json_encode(array('status'=> 201));
-            }
+        $searchCnpjStore = mysqli_query($conn, $sqlStoreS);
+
+        if(mysqli_num_rows($searchCnpjStore) != 0){
+            echo json_encode(array('status' => 406));
         }else{
             $sqlStoreI = "INSERT INTO loja(nome, razao_social, cnpj, cidade, estado)
                 VALUES
