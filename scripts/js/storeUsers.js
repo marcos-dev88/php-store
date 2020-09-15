@@ -56,6 +56,8 @@ function showUsers() {
         .then(response => response.json())
         .then(function (data) {
 
+            console.log(data);
+
             if (data.status == 404) {
                 userList.innerHTML += `
             <tr>
@@ -66,7 +68,7 @@ function showUsers() {
                     userList.innerHTML += `
                     <td>${data.user[i].nick_name}</td>
                     <td>${data.user[i].role}</td>
-                    <td>${data.user[i].data_nasc}</td>
+                    <td>${convertDate(data.user[i].data_nasc)}</td>
                     <td>
                         <button class='btn btn-danger'  data-toggle='modal' data-target='#dUserModal' onclick="sendDataToDelete(${data.user[i].id}, '${data.user[i].nick_name}')">
                             <i class='fa fa-trash' aria-hidden='true'></i>
@@ -256,4 +258,9 @@ function reloadPage() {
     setTimeout(() => {
         location.reload();
     }, 1200);
+}
+
+function convertDate(date){
+    let temp = date.split('-');
+    return new Date(+temp[0], +temp[1] -1, +temp[2]).toLocaleDateString();
 }

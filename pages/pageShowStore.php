@@ -26,10 +26,10 @@
 <!--=========================== REGISTER MODAL ==================================-->
     <div class="modal fade" id="rStoreModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style='background-color: #333231; color: white;'>
             <div class="modal-header">
                 <label class="modal-title" id="rStoreMLabel"> Registrar nova loja </label>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style='color: white'>
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -60,10 +60,10 @@
 <!--=========================== DELETE MODAL ==================================-->
     <div class="modal fade" id="dStoreModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style='background-color: #333231; color: white;'>
             <div class="modal-header">
                 <label class="modal-title" id="dStoreMLabel"></label>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style='color: white'>
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -83,13 +83,15 @@
 <!--=========================== END MODAL ==================================-->
 
         <nav class="navbar navbar-dark" style="background-color: #333231;">
-            <a style="color: white; font-size: 17px; font-style:italic;">Bem vindo 
-                <?php
-                    echo $_SESSION['userAdm'];
-                ?>
-                !
-            </a>
-            <button class='btn-php-store' data-toggle='modal' data-target='#rStoreModal' style='margin-left: 79%;'>Registrar Loja</button>
+            <label style="color: white; font-size: 17px; font-style:italic;">
+                <span id='greetingMessage'></span>
+                <span>
+                    <?php
+                        echo $_SESSION['userAdm'];
+                    ?>
+                    !
+                </span>
+            </label>
             <button class='btn-php-store' style="margin-left: 92%; width: 72px;" onclick='backFirstSession()'>Voltar</button>
         </nav>
         <div class='col-md-12 form-group m-t-lg'>
@@ -98,6 +100,9 @@
             </div>
             <input class='form-control input-search-store' id='searchBar' type='text' onkeyup='findStoreByName()' placeholder='Pesquise pelo nome da loja: '/>
         </div>
+        <button class='btn-add-php-store' data-toggle='modal' data-target='#rStoreModal' style='margin-left: 95%;'>
+            <i class="fas fa-plus"></i>
+        </button>
         <div id="allStores" class='col-md-12 div-present-stores' style='background-color: #333231;'>
             <table class="table" style='color: #fff;'>
                 <thead>

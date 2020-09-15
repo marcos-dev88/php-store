@@ -59,6 +59,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO loja(nome, razao_social, cnpj, cidade, estado) VALUES ("Adminstore", "Loja de Administração", 8080127001, "Florianópolis", "Santa Catarina");
 
-INSERT INTO usuario(id_loja, role, nick_name, password, data_nasc) VALUES (1, "admin", "admin", "admin", 3007);
+INSERT INTO usuario(id_loja, role, nick_name, password, data_nasc) VALUES (1, "admin", "admin", "admin", 1999-07-30);
 
-INSERT INTO usuario(id_loja, role, nick_name, password, data_nasc) VALUES (1, "user", "user", "user", 3007);
+INSERT INTO usuario(id_loja, role, nick_name, password, data_nasc) VALUES (1, "user", "user", "user", 1999-07-30);

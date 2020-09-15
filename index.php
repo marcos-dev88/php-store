@@ -16,7 +16,7 @@
                 <input class="first-input-style" type="text" name="nickname" placeholder="Usuário"/>
                 <p></p>
                 <input class="input-style-default" id='iPasswordInput' type="password" name="password" placeholder="Senha"/>
-                <label id='showPassIcon' class='fas fa-eye show-pass-input-index'>
+                <label id='showPassIcon' class='fas fa-eye show-pass-input-index' style='color: #5f5d5e;'>
                     <input type='checkbox' style='opacity: 0' checked='checked' onclick='showPassword()' id='changeInputB'/>
                 </label>
                 <p></p>
