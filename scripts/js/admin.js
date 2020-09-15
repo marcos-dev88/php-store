@@ -2,13 +2,15 @@ function backHome(){
     location.replace('../index.php');
 }
 
+function goStoreList(){
+    location.replace('pageShowStore.php');
+}
+
 function getStoreByUser(){
     const url = '../scripts/php/getStorebyUser.php';
-
     let jsonData = {
         nameUserJ: document.querySelector('input[id=userNameInput]').value
     }
-
     let header = {
         method: 'POST',
         contentType: 'json',
@@ -16,32 +18,32 @@ function getStoreByUser(){
         cache: 'default',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(jsonData)
-    }
+        body: JSON.stringify(jsonData)    
+    };
+
+    console.log(jsonData);
 
     fetch(url, header)
     .then(response => response.json())
     .then(function(data){
 
-        let infoUser = document.getElementById('infoUser');
         console.log(data);
-        
         if(data.teamMate[0].count_user-1 > 0 && data.teamMate[0].count_user-1 != 1){
-            infoUser.innerHTML += `
+            document.getElementById('infoUser').innerHTML += `
                 <li> Você faz parte da loja: ${data.sName[0].nome};</li>
                 <li> Você possui o cargo de: ${verifyRole(data.roleUser)}; </li>
                 <li> Você possui ${data.teamMate[0].count_user-1} colegas de trabalho.</li>
             `;
-        }else if(data.teamMate[0].count_user-1 == 1){
-            infoUser.innerHTML += `
+        }else if(data.teamMate[0].count_user-1 == 1 ){
+            document.getElementById('infoUser').innerHTML += `
                 <li> Você faz parte da loja: ${data.sName[0].nome};</li>
                 <li> Você possui o cargo de: ${verifyRole(data.roleUser)}; </li>
                 <li> Você possui ${data.teamMate[0].count_user-1} colega de trabalho.</li>
             `;
         }else{
-            infoUser.innerHTML += `
+            document.getElementById('infoUser').innerHTML += `
                 <li> Você faz parte da loja: ${data.sName[0].nome};</li>
                 <li> Você possui o cargo de: ${verifyRole(data.roleUser)}; </li>
                 <li> Você não possui nenhum colega de trabalho.</li>
@@ -80,7 +82,7 @@ function changeUserPass(){
     fetch(url, header)
     .then(response => response.json())
     .then(function(data){
-
+        
         let warning = document.querySelector('label[id=changePassWarning]');
 
         if(data.status == 406){
@@ -96,6 +98,13 @@ function changeUserPass(){
     
     }).catch(error => {
         console.log(error);
+    });
+}
+
+function cleanFields(){
+    $('#rStoreModal').on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+        document.querySelector('label[id=rStoreWarning]').innerHTML = '';
     });
 }
 
@@ -121,7 +130,7 @@ function timeOfDay(){
 function verifyRole(role){
     switch(role){
         case "user":
-            return 'Funcionário';
+            return 'Usuário';
         case "admin":
             return 'Administrador';
     }

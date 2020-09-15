@@ -30,6 +30,24 @@ body{
     background-color: #d52e2e;
 }
 
+.btn-add-php-store{
+    background-color: #34bd27;
+    text-align: center;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    margin-left: 13%;
+    border-radius: 49px;
+    border: #ececec solid 2px;
+    color: white;
+    margin-left: 79%;
+    margin-top: -26px;
+}
+
+.btn-add-php-store:hover{
+    background-color: #57f028; 
+}
+
 .form-div-index{
     text-align: center;
     width: 40%;
@@ -91,19 +109,19 @@ body{
 .div-search-icon{
     margin-top: 10px;
     padding: 7px;
-    border: 2px solid #918a8b;
+    border: 2px solid #333231;
     width: 39px;
     height: 40px;
     border-radius: 10px 0px 0px 10px;
-    background-color: #9b9292;
+    background-color: #333231;
 }
 
 .input-search-store{
-    margin-top: -39.5px;
+    margin-top: -39.6px;
     margin-bottom: -32px;
     width: 35%;
     margin-left: 39px;
-    border: 1px solid #918a8b;
+    border: 1px solid #333231;
     height: 40px;
     border-radius: 0px 4px 4px 0px;
 }
@@ -130,5 +148,17 @@ body{
     z-index: 3;
     position: absolute;
     margin-left: -27px;
-    margin-top: 5px;
+    margin-top: 8px;
+}
+
+.div-information-user{
+    border: 2px #333231 solid;
+    border-radius: 9px;
+    width: 30%;
+    height: 23%;
+    margin-top: 6%;
+    margin-left: 33%;
+    padding: 44px;
+    color: white;
+    background-color: #333231;
 }

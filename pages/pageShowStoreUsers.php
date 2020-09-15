@@ -26,10 +26,10 @@
 <!--=========================== REGISTER MODAL ==================================-->
         <div class="modal fade" id="rUserModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content" style='background-color: #333231; color: white;'>
                     <div class="modal-header">
                         <label class="modal-title" id="rUserMLabel"> Registrar novo Usuário </label>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style='color: white'>
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -45,7 +45,7 @@
                             </select>
                             <label style='margin-top:15px' id='passULabel'>Senha <span class='required'>*</span>:</label>
                             <input class='form-control' type='password' id='passwordInput'/>
-                            <label id='showPassIcon' class='fas fa-eye show-pass-input'>
+                            <label id='showPassIcon' class='fas fa-eye show-pass-input' style='color: #5f5d5e;'>
                                 <input type='checkbox' style='opacity: 0' checked='checked' onclick='showPassword()' id='changeInputB'/>
                             </label>
                             <label style='margin-top:15px' >Data de Nascimento <span class='required'>*</span>:</label>
@@ -65,10 +65,10 @@
 
 <div class="modal fade" id="dUserModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style='background-color: #333231; color: white;'>
             <div class="modal-header">
                 <label class="modal-title" id="dUserMLabel"></label>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style='color: white'>
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -94,7 +94,6 @@
                 ?>
                 :
             </a>
-            <button class='btn-php-store' data-toggle='modal' data-target='#rUserModal' style='margin-left: 79%;'>Registrar Usuário</button>
             <button class='btn-php-store' style="margin-left: 92%; width: 72px;" onclick='backStores()'>Voltar</button>
         </nav>
 
@@ -104,6 +103,9 @@
             </div>
             <input class='form-control input-search-store' id='searchBar' type='text' onkeyup='findUserByName()' placeholder='Pesquise pelo nome do usuário: '/>
         </div>
+        <button class='btn-add-php-store' data-toggle='modal' data-target='#rUserModal' style='margin-left: 95%;'>
+            <i class="fas fa-plus"></i>
+        </button>
         <div id="allUsers" class='col-md-12 div-present-stores' style='background-color: #333231;'>
             <table class="table" style='color: #fff;'>
                 <thead>

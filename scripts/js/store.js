@@ -1,11 +1,3 @@
-function backHome(){
-    location.replace('../index.php');
-}
-
-function goStoreList(){
-    location.replace('pageShowStore.php');
-}
-
 function backFirstSession(){
     location.replace('pageAdmin.php');
 }
@@ -108,6 +100,7 @@ function showStores(){
                 </tr>`;
             }
         }
+        timeOfDay();
     }).catch(error => {
         console.error(error)
     });
@@ -292,4 +285,23 @@ function reloadPage(){
     setTimeout(() => {
         location.reload();
     }, 1200);
+}
+
+function timeOfDay(){
+    date = new Date();
+    let greeting = document.querySelector('#greetingMessage');
+    console.log(greeting);
+    time = date.getHours();
+
+    switch(true){
+        case time >= 0 && time < 12:
+            greeting.innerHTML = "Bom dia";
+        break;
+        case time >= 12 && time < 18:
+            greeting.innerHTML = "Boa tarde";
+        break;
+        case time >= 18 && time < 24:
+            greeting.innerHTML = "Boa noite";
+        break;
+    }
 }
