@@ -1,0 +1,5 @@
+FROM nginx:1.9
+
+COPY . /php_store_app
+
+COPY ./config/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf

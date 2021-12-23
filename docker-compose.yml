@@ -1,0 +1,41 @@
+version '3.4'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile_nginx
+    ports:
+      - '90:90'
+    container_name: 'nginx_php_store'
+    links:
+      - php_app
+    networks:
+      - app-network
+
+  php_app:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile_php
+    container_name: php_store
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql-php
+    env_file:
+      - ./.env
+    ports:
+      - '3305:3306'
+    expose:
+      - 3305
+    command: [ --ddefault-authentication-plugin=mysql_native_password ]
+    volumes:
+      - ./config/db/:/docker-entrypointdb.d
+    networks:
+      - app-network
+
+  networks:
+    app-network:
+      driver: bridge
