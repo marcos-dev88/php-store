@@ -1,4 +1,4 @@
-version '3.4'
+version: '3.4'
 
 services:
   nginx:
@@ -36,6 +36,6 @@ services:
     networks:
       - app-network
 
-  networks:
-    app-network:
-      driver: bridge
+networks:
+ app-network:
+  driver: bridge
