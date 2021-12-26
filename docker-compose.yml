@@ -2,11 +2,12 @@ version: '3.4'
 
 services:
   nginx:
+    restart: always
     build:
       context: .
       dockerfile: ./docker/Dockerfile_nginx
     ports:
-      - '90:90'
+      - '95:95'
     container_name: 'nginx_php_store'
     links:
       - php_app
@@ -15,7 +16,7 @@ services:
 
   php_app:
     build:
-      context: .
+      context: ./
       dockerfile: ./docker/Dockerfile_php
     container_name: php_store
     networks:
