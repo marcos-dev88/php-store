@@ -7,4 +7,8 @@ apt-get update && apt-get install -y \
 
 rm -rf /var/cache/apk/*
 
-curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+cd /php_store_app
+
+composer install --ignore-platform-reqs || composer update
+
+composer dump-autoload
