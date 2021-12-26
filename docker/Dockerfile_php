@@ -8,6 +8,8 @@ ARG user=marcos_dev
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 RUN ["chmod", "+x", "/php_store_app/scripts/config/docker_php_conf.sh"]
 
 RUN ["bash", "/php_store_app/scripts/config/docker_php_conf.sh"]
