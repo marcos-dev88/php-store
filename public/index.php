@@ -2,7 +2,7 @@
 
 session_start();
 
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Slim\Factory\AppFactory;
 
@@ -10,11 +10,11 @@ $app = AppFactory::create();
 
 $app->addRoutingMiddleware();
 $app->addErrorMiddleware(true, true, true);
-$app->setBasePath('/api/v1');
+$app->setBasePath("/api/v1");
 
-require('../api/v1/user.php');
-require('../api/v1/store.php');
-require('../api/v1/login.php');
+require("../api/v1/user.php");
+//require('../api/v1/store.php');
+//require('../api/v1/login.php');
 
 
 try {
