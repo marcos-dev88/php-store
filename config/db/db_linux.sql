@@ -20,31 +20,31 @@ USE `php_store` ;
 -- -----------------------------------------------------
 -- Table `php_store`.`loja`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `php_store`.`loja` (
+CREATE TABLE IF NOT EXISTS `php_store`.`store` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NOT NULL,
-  `razao_social` VARCHAR(100) NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  `social_reason` VARCHAR(100) NOT NULL,
   `cnpj` VARCHAR(25) NOT NULL,
-  `cidade` VARCHAR(45) NOT NULL,
-  `estado` VARCHAR(45) NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `state` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`));
 
 
 -- -----------------------------------------------------
 -- Table `php_store`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `php_store`.`usuario` (
+CREATE TABLE IF NOT EXISTS `php_store`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `id_loja` INT NOT NULL,
+  `id_store` INT NOT NULL,
   `role` VARCHAR(20) NOT NULL,
   `nick_name` VARCHAR(45) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
-  `data_nasc` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`, `id_loja`),
-  INDEX `fk_usuario_loja_idx` (`id_loja` ASC),
-  CONSTRAINT `fk_usuario_loja`
-    FOREIGN KEY (`id_loja`)
-    REFERENCES `php_store`.`loja` (`id`)
+  `birth_date` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`, `id_store`),
+  INDEX `fk_user_store_idx` (`id_store` ASC),
+  CONSTRAINT `fk_user_store`
+    FOREIGN KEY (`id_store`)
+    REFERENCES `php_store`.`store` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION);
 
@@ -53,9 +53,9 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT INTO loja(nome, razao_social, cnpj, cidade, estado) VALUES ("Adminstore", "Loja de Administracao", 8080127001, "Florianopolis", "Santa Catarina");
+INSERT INTO loja(name, social_reason, cnpj, city, state) VALUES ("Adminstore", "Loja de Administracao", 8080127001, "Florianopolis", "Santa Catarina");
 
-INSERT INTO usuario(id_loja, role, nick_name, password, data_nasc) VALUES (1, "admin", "admin", "admin", 1999-07-30);
+INSERT INTO usuario(id_loja, role, nick_name, password, birth_date) VALUES (1, "admin", "admin", "admin", "1999-07-30");
 
-INSERT INTO usuario(id_loja, role, nick_name, password, data_nasc) VALUES (1, "user", "user", "user", 1999-07-30);
+INSERT INTO usuario(id_loja, role, nick_name, password, birth_date) VALUES (1, "user", "user", "user", "1999-07-30");
 
