@@ -15,10 +15,12 @@ services:
       - app-network
 
   php_app:
+    container_name: 'app_php_store'
     build:
       context: ./
       dockerfile: ./docker/Dockerfile_php
-    container_name: php_store
+    volumes:
+    - ./:/var/www/html
     networks:
       - app-network
 
