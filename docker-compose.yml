@@ -9,10 +9,9 @@ services:
     ports:
       - '95:95'
     container_name: 'nginx_php_store'
-    links:
-      - php_app
     networks:
-      - app-network
+      default:
+        ipv4_address: 205.5.3.2
 
   php_app:
     container_name: 'app_php_store'
@@ -22,7 +21,8 @@ services:
     volumes:
     - ./:/var/www/html
     networks:
-      - app-network
+      default:
+        ipv4_address: 205.5.3.3
 
   mysql:
     image: mysql:latest
@@ -37,8 +37,10 @@ services:
     volumes:
       - ./config/db/:/docker-entrypointdb.d
     networks:
-      - app-network
+      default:
+        ipv4_address: 205.5.3.4
 
 networks:
- app-network:
-  driver: bridge
+  default:
+    external:
+      name: php_store_net_dev
